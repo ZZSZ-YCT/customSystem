@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: user-backend
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    volumes:
+      # 挂载宿主机当前目录下的 data 文件夹用于存储 SQLite 数据库文件，确保数据持久化
+      - ./data:/data
+    restart: unless-stopped
